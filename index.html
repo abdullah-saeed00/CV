@@ -105,8 +105,6 @@
             color: var(--primary);
             text-decoration: none;
             transition: var(--transition);
-            
-            
         }
         
         .logo:hover {
@@ -183,7 +181,7 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        /* Language Switcher */
+        /* Language Switcher - IMPROVED */
         .language-switcher {
             position: relative;
             display: inline-block;
@@ -195,23 +193,30 @@
             right: 0;
             top: 100%;
             background-color: white;
-            min-width: 130px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            min-width: 140px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             z-index: 1000;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.1);
+            margin-top: 8px;
         }
         
         .language-dropdown a {
             color: var(--dark);
-            padding: 10px 16px;
+            padding: 12px 16px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: var(--transition);
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .language-dropdown a:last-child {
+            border-bottom: none;
         }
         
         .language-dropdown a:hover {
@@ -221,37 +226,58 @@
         
         .language-switcher:hover .language-dropdown {
             display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .flag-icon {
-            width: 22px;
-            height: 16px;
-            border-radius: 2px;
+            width: 24px;
+            height: 18px;
+            border-radius: 3px;
             overflow: hidden;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
+        /* التعديل: جعل لون النص في زر اللغة أزرق */
         .lang-btn {
             background: rgba(26, 115, 232, 0.1);
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            color: var(--primary);
-            font-weight: 600;
+            border: 2px solid rgba(26, 115, 232, 0.2);
+            border-radius: 8px;
+            padding: 9px 14px;
+            color: var(--primary); /* لون النص أزرق */
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 0.95rem;
         }
         
         .lang-btn:hover {
-            background: rgba(26, 115, 232, 0.2);
-            transform: translateY(-1px);
+            background: rgba(26, 115, 232, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.15);
+            border-color: rgba(26, 115, 232, 0.3);
+        }
+        
+        .lang-btn i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            color: var(--primary); /* لون الأيقونة أزرق */
+        }
+        
+        .language-switcher:hover .lang-btn i {
+            transform: rotate(180deg);
         }
 
         /* Dark Mode Toggle */
@@ -499,6 +525,16 @@
         html[dir="rtl"] .title::after { right: 0; left: auto; }
         html[dir="ltr"] .title::after { left: 0; right: auto; }
 
+        /* التعديل: جعل النص في قسم النبذة المهنية أبيض في الوضع الليلي */
+        #summary .content-card p {
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        .dark-mode #summary .content-card p {
+            color: white !important;
+        }
+
         /* Qualification Items */
         .qualification-item {
             padding: 16px;
@@ -688,7 +724,7 @@
         .lang-en-block { display: none; }
         html[lang="en"] .lang-ar-block { display: none; }
 
-        /* Dark Mode Styles */
+        /* Dark Mode Styles - IMPROVED LANGUAGE SWITCHER */
         .dark-mode {
             background-color: #1a202c;
             color: #f7fafc;
@@ -718,24 +754,29 @@
         .dark-mode .language-dropdown {
             background-color: #2d3748;
             border-color: #4a5568;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         
         .dark-mode .language-dropdown a {
             color: #f7fafc;
+            border-bottom-color: #4a5568;
         }
         
         .dark-mode .language-dropdown a:hover {
-            background-color: #4a5568;
+            background-color: rgba(26, 115, 232, 0.2);
             color: var(--primary-light);
         }
         
+        /* التعديل: الحفاظ على اللون الأزرق لزر اللغة في الوضع الليلي */
         .dark-mode .lang-btn {
             background: rgba(26, 115, 232, 0.2);
-            color: var(--primary-light);
+            color: var(--primary-light) !important; /* لون النص أزرق فاتح في الوضع الليلي */
+            border-color: rgba(26, 115, 232, 0.3);
         }
         
         .dark-mode .lang-btn:hover {
             background: rgba(26, 115, 232, 0.3);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
         }
         
         .dark-mode .mobile-toggle:hover {
@@ -793,6 +834,7 @@
         .dark-mode .dark-mode-toggle:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+        
 
         /* Print Styles */
         @media print {
@@ -843,6 +885,11 @@
             .main-content {
                 margin-top: 70px;
             }
+            
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 767.98px) {
@@ -881,6 +928,15 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
+            
+            .lang-btn {
+                padding: 7px 10px;
+            }
+            
+            .flag-icon {
+                width: 22px;
+                height: 16px;
+            }
         }
 
         @media (max-width: 575.98px) {
@@ -889,8 +945,14 @@
             }
             
             .lang-btn {
-                padding: 6px 10px;
-                font-size: 0.9rem;
+                padding: 6px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .flag-icon {
+                width: 20px;
+                height: 15px;
+                font-size: 10px;
             }
             
             .dark-mode-toggle, .mobile-toggle {
@@ -914,6 +976,15 @@
                 font-size: 16px;
                 right: 15px;
                 bottom: 15px;
+            }
+            
+            .language-dropdown {
+                min-width: 120px;
+            }
+            
+            .language-dropdown a {
+                padding: 10px 14px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -964,7 +1035,7 @@
                     <div class="language-switcher">
                         <button class="lang-btn">
                             <span class="flag-icon bg-green-600 text-white">AR</span>
-                            <i class="fas fa-chevron-down text-xs"></i>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="language-dropdown">
                             <a href="#" data-lang="en">
@@ -1037,7 +1108,7 @@
                         <span class="lang-en">Abdullah Saeed Ismail</span>
                     </h1>
                     <p class="mb-4 fs-5">
-                        <span class="lang-ar">إداري محترف ومشرف</span>
+                        <span class="lang-ar"></span>
                         <span class="lang-en">Professional Administrator & Supervisor</span>
                     </p>
                     
@@ -1051,7 +1122,7 @@
                                     <span class="lang-ar">هاتف للتواصل</span>
                                     <span class="lang-en">Contact Phone</span>
                                 </div>
-                                <div class="value">77466144 / 774661144</div>
+                                <div class="value">77466144 </div>
                             </div>
                         </div>
                         
@@ -1450,7 +1521,7 @@
                 
                 // Update language switcher button
                 const langButton = document.querySelector('.lang-btn');
-                langButton.innerHTML = '<span class="flag-icon bg-green-600 text-white">AR</span><i class="fas fa-chevron-down text-xs"></i>';
+                langButton.innerHTML = '<span class="flag-icon bg-green-600 text-white">AR</span><i class="fas fa-chevron-down"></i>';
                 
             } else {
                 document.documentElement.dir = 'ltr';
@@ -1459,7 +1530,7 @@
                 
                 // Update language switcher button
                 const langButton = document.querySelector('.lang-btn');
-                langButton.innerHTML = '<span class="flag-icon bg-blue-600 text-white">EN</span><i class="fas fa-chevron-down text-xs"></i>';
+                langButton.innerHTML = '<span class="flag-icon bg-blue-600 text-white">EN</span><i class="fas fa-chevron-down"></i>';
             }
             
             // Store language preference
